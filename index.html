@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/01.css">
+
+    <script src="lid/jquery-3.7.0.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <script>
+        $(function () {
+
+            $('ul li a').click(function () {
+                return false
+            })
+
+            $('.menu_open').click(function () {
+                $('nav').css({
+                    'right': '0',
+                    'transition': '0.7s'
+                });
+            });
+
+            $('.menu_close').click(function () {
+                $('nav').css({
+                    'right': '-100%'
+                });
+            });
+
+            //bg
+            var swiper = new Swiper(".mySwiper", {
+                spaceBetween: 30,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+
+                pagination: {
+                    el: ".swiper-pagination",
+                },
+
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
+            });
+
+
+            $('.left .slide:gt(0)').hide()
+            setInterval(function () {
+                $('.left .slide:first').fadeOut(1500).next().fadeIn(1500)
+                $('.left .slide:first').appendTo('.left .slide_wrap')
+            }, 3000)
+
+            $('.depth01 > a').click(function () {
+                if ($(this).siblings().css('display') == 'none') {
+                    $('.depth02').slideUp()
+                    $(this).siblings().slideDown()
+
+                    $('.depth01 > a').css({
+                        'color': '#366775'
+                    })
+                    $(this).css({
+                        'color': '#fff'
+                    })
+                } else {
+                    $(this).siblings().slideUp()
+
+                    $(this).css({
+                        'color': '#366775'
+                    })
+                }
+            })
+
+            $('.tab_menu li').click(function () {
+                $('.tab_menu li').removeClass('on');
+                $(this).addClass('on');
+
+                $('.tab_list').removeClass('on');
+                $('.tab_list').eq($(this).index()).addClass('on');
+            });
+
+            console.log($('header').offset().top)
+            let headerTop = $('header').offset().top
+            let cont01Top = $('.cont01').offset().top
+            console.log(cont01Top)
+
+            $(window).scroll(function () {
+                if (headerTop < $(window).scrollTop()) {
+                    $('header').addClass('on')
+                } else {
+                    $('header').removeClass('on')
+                }
+
+                if (cont01Top < $(window).scrollTop()) {
+                    $('.top').fadeIn()//.css({'display' : 'flex'}) top에게 display를 주었을때
+                } else {
+                    $('.top').fadeOut()
+                }
+
+            })
+
+            $('.top').click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 2000)
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="header">
+            <div class="inner">
+                <h1>
+                    <a href="#"><img src="img/pc_img_logo.png" alt=""></a>
+                </h1>
+                <div class="icons">
+                    <a href="#"><img src="img/아이콘/icons8-사용자-48.png" alt=""></a>
+                    <a href="#"><img src="img/아이콘/icons8-가방-64.png" alt=""></a>
+                    <a href="#"><img src="img/아이콘/icons8-선물-48.png" alt=""></a>
+                </div><!-- .icons end -->
+                <div class="menu_open">
+                    <a href="#"><img src="img/아이콘/icons8-메뉴-67.png" alt=""></a>
+                </div><!-- .menu_open end -->
+
+                <nav>
+                    <div class="menu">
+                        <div class="menu_close">
+                            <a href="#"><img src="img/아이콘/icons8-닫기-60.png" alt=""></a>
+                        </div><!-- .menu_close end -->
+
+                        <ul class="gnb">
+                            <li class="depth01">
+                                <a href="#">JEWELRY</a>
+                                <ul class="depth02">
+                                    <li><a href="#">목걸이</a></li>
+                                    <li><a href="#">귀고리</a></li>
+                                    <li><a href="#">반지</a></li>
+                                    <li><a href="#">팔찌</a></li>
+                                    <li><a href="#">피어싱</a></li>
+                                    <li><a href="#">기타</a></li>
+                                </ul><!-- depth02 end -->
+                            </li><!-- .depth01 end -->
+                            <li class="depth01">
+                                <a href="#">BAG</a>
+                                <ul class="depth02">
+                                    <li><a href="#">토트백</a></li>
+                                    <li><a href="#">크로스백</a></li>
+                                    <li><a href="#">숄더백</a></li>
+                                    <li><a href="#">쇼퍼백</a></li>
+                                    <li><a href="#">백팩</a></li>
+                                    <li><a href="#">기타</a></li>
+                                </ul><!-- depth02 end -->
+                            </li><!-- .depth01 end -->
+                            <li class="depth01">
+                                <a href="#">WATCH</a>
+                                <ul class="depth02">
+                                    <li><a href="#">가죽</a></li>
+                                    <li><a href="#">메탈</a></li>
+                                    <li><a href="#">워치스크랩</a></li>
+                                </ul><!-- depth02 end -->
+                            </li><!-- .depth01 end -->
+                            <li class="depth01">
+                                <a href="#">ACC</a>
+                                <ul class="depth02">
+                                    <li><a href="#">헤어</a></li>
+                                    <li><a href="#">모자</a></li>
+                                    <li><a href="#">벨트</a></li>
+                                    <li><a href="#">머플러</a></li>
+                                </ul><!-- depth02 end -->
+                            </li><!-- .depth01 end -->
+                            <li class="depth01">
+                                <a href="#">EXCLUSIVE</a>
+                                <ul class="depth02">
+                                    <li><a href="#">목걸이</a></li>
+                                    <li><a href="#">귀고리</a></li>
+                                    <li><a href="#">반지</a></li>
+                                    <li><a href="#">헤어</a></li>
+                                    <li><a href="#">피어싱</a></li>
+                                    <li><a href="#">기타</a></li>
+                                </ul><!-- depth02 end -->
+                            </li><!-- .depth01 end -->
+                            <li class="depth01">
+                                <a href="#">OUTLET</a>
+                                <ul class="depth02">
+                                    <li><a href="#">목걸이</a></li>
+                                    <li><a href="#">귀고리</a></li>
+                                    <li><a href="#">반지</a></li>
+                                    <li><a href="#">헤어</a></li>
+                                    <li><a href="#">피어싱</a></li>
+                                    <li><a href="#">기타</a></li>
+                                </ul><!-- depth02 end -->
+                            </li><!-- .depth01 end -->
+
+                            <li class=""></li>
+                        </ul><!-- .gnb end -->
+
+                        <div class="right">
+                            <a href="#"><img src="img/img.jpg" alt=""></a>
+                        </div>
+                    </div>
+                </nav>
+
+            </div><!-- .inner end -->
+        </header><!-- .header end -->
+
+        <main>
+            <section class="main_slider">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="img/bg5.jpg" alt="">
+                        </div><!-- swiper-slide -->
+
+                        <div class="swiper-slide">
+                            <img src="img/bg2.jpg" alt="">
+                        </div><!-- swiper-slide -->
+
+                        <div class="swiper-slide">
+                            <img src="img/bg4.jpg" alt="">
+                        </div><!-- swiper-slide -->
+
+                    </div>
+
+                    <!-- 다음, 이전 버튼 -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+
+                    <!-- 페이징 -->
+                    <div class="swiper-pagination"></div>
+            </section><!-- .main_slider end -->
+
+            <section class="cont01">
+                <h3>COLLECTION</h3>
+                <p>23 FALL JEWELRY COLLECTION J UNIVERSE with 아이유</p>
+                <div class="list">
+                    <ul class="item">
+                        <li>
+                            <a href="#" onclick="return"><img src="img/4.jpg" alt=""></a>
+                            <p><a href="#">ETER</a></p>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/5.jpg" alt=""></a>
+                            <p><a href="#">CLOVIA</a></p>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/6.jpg" alt=""></a>
+                            <p><a href="#">JETE</a></p>
+                        </li>
+                    </ul><!-- .item end -->
+
+                </div><!-- .list end -->
+
+                <div class="box1"><span>박스</span></div>
+                <div class="box2"><span>박스</span></div>
+
+            </section><!-- .cont01 end -->
+
+            <section class="cont02">
+                <div class="left">
+                    <div class="slide_wrap">
+                        <div class="slide"><a href="#"><img src="img/cont02.jpg" alt=""></a></div>
+                        <div class="slide"><a href="#"><img src="img/cont02_1.jpg" alt=""></a></div>
+                        <div class="slide"><a href="#"><img src="img/cont02_2.jpg" alt=""></a></div>
+                        <div class="slide"><a href="#"><img src="img/cont02_3.jpg" alt=""></a></div>
+                    </div><!-- .slide_wrap end -->
+                </div><!-- .list end -->
+
+                <div class="right">
+                    <ul class="cont02_menu">
+                        <li><a href="#">2023 SUMMER</a></li>
+                        <li><a href="#">23 FALL JEWELRY</a></li>
+                        <li><a href="#">설희X주희의 여행 스타일링</a></li>
+                        <li><a href="#">아이유와 함께 떠나는 일상 여행</a></li>
+                    </ul><!-- .cont02_menu end -->
+                </div><!-- .right end -->
+            </section><!-- .cont02 end -->
+
+            <section class="cont03">
+                <div class="inner">
+                    <h3>JEWELRY</h3>
+                    <ul class="tab_menu">
+                        <li class="on">목걸이</li>
+                        <li>귀고리</li>
+                        <li>반지</li>
+                        <li>팔찌</li>
+                    </ul><!-- .tab_menu end -->
+
+                    <div class="tab_wrap">
+                        <div class="tab_list on">
+                            <div class="item">
+                                <a href="#">
+                                    <img src="img/cont03.jpg" alt="">
+                                </a>
+                                <div>
+                                    <h3>ETER MIOELLO 목걸이 (JJERNQ3BF690SW420)</h3>
+                                    <p>188,000원</p>
+                                </div>
+                            </div><!-- .item end -->
+                            <div class="item">
+                                <a href="#">
+                                    <img src="img/cont03_1.jpg" alt="">
+                                </a>
+                                <div>
+                                    <h3>ETER 14K 목걸이 (JJERNQ3BF689R4420)</h3>
+                                    <p>298,000원</p>
+                                </div>
+                            </div><!-- .item end -->
+                            <div class="item">
+                                <a href="#">
+                                    <img src="img/cont03_2.jpg" alt="">
+                                </a>
+                                <div>
+                                    <h3>ETER 14K 목걸이 (JJERNQ3BF667R4420)</h3>
+                                    <p>498,000원</p>
+                                </div>
+                            </div><!-- .item end -->
+                        </div><!-- .tab_list end -->
+                        <div class="tab_list">
+                            <div class="item">
+                                <a href="#">
+                                    <img src="img/cont01-3.jpg" alt="">
+                                </a>
+                                <div>
+                                    <h3>ETER 14K 귀걸이 (JJEREQ3BF689R40A0)</h3>
+                                    <p>238,000원</p>
+                                </div>
+                            </div><!-- .item end -->
+                            <div class="item">
+                                <a href="#">
+                                    <img src="img/cont01-4.jpg" alt="">
+                                </a>
+                                <div>
+                                    <h3>ETER 14K 귀걸이 (JJEREQ3BF667R4000)</h3>
+                                    <p>398,000원</p>
+                                </div>
+                            </div><!-- .item end -->
+                            <div class="item">
+                                <a href="#">
+                                    <img src="img/cont01-5.jpg" alt="">
+                                </a>
+                                <div>
+                                    <h3>MARIEBEL 14K 1부 다이아 귀걸이 (JJMBED3BF781W4000)</h3>
+                                    <p>980,000원</p>
+                                </div>
+                            </div><!-- .item end -->
+                        </div><!-- .tab_list end -->
+                        <div class="tab_list">
+                            <div class="item">
+                                <a href="#">
+                                    <img src="img/cont01-6.jpg" alt="">
+                                </a>
+                                <div>
+                                    <h3>ETER 14K 반지 (JJERRQ3BF668R4120)</h3>
+                                    <p>338,000원</p>
+                                </div>
+                            </div><!-- .item end -->
+                            <div class="item">
+                                <a href="#">
+                                    <img src="img/cont01-7.jpg" alt="">
+                                </a>
+                                <div>
+                                    <h3>ETER 14K 화이트 자개 반지 (JJERRN3BF688R4120)</h3>
+                                    <p>428,000원</p>
+                                </div>
+                            </div><!-- .item end -->
+                            <div class="item">
+                                <a href="#">
+                                    <img src="img/cont01-8.jpg" alt="">
+                                </a>
+                                <div>
+                                    <h3>MARIEBEL 14K 반지 (JJMBRQ3BF723W4120)</h3>
+                                    <p>480,000원</p>
+                                </div>
+                            </div><!-- .item end -->
+                        </div><!-- .tab_list end -->
+                        <div class="tab_list">
+                            <div class="item">
+                                <a href="#">
+                                    <img src="img/cont01.jpg" alt="">
+                                </a>
+                                <div>
+                                    <h3>ETER 14K 테니스 팔찌 (JJERBQ3BF669R47S0)</h3>
+                                    <p>1,590,000원</p>
+                                </div>
+                            </div><!-- .item end -->
+                            <div class="item">
+                                <a href="#">
+                                    <img src="img/cont01-1.jpg" alt="">
+                                </a>
+                                <div>
+                                    <h3>CLOVIA 팔찌 (JJCLBQ3BF168SW7S0)</h3>
+                                    <p>178,000원</p>
+                                </div>
+                            </div><!-- .item end -->
+                            <div class="item">
+                                <a href="#">
+                                    <img src="img/cont01-2.jpg" alt="">
+                                </a>
+                                <div>
+                                    <h3>J.Livera 14K 팔찌 (JJJTB03BF015R47S0)</h3>
+                                    <p>398,000원</p>
+                                </div>
+                            </div><!-- .item end -->
+                        </div><!-- .tab_list end -->
+
+                    </div><!-- .tab_wrap end -->
+
+                    <div class="box1"><span>박스</span></div>
+                    <div class="box2"><span>박스</span></div>
+                </div><!-- .inner end -->
+            </section><!-- .cont03 end -->
+
+            <section class="cont04">
+
+                <h3>BEST</h3>
+                <div class="list">
+                    <div class="item">
+                        <a href="#">
+                            <figure><img src="img/img1.jpg" alt=""></figure>
+                            <div>
+                                <p>[아이유 PICK] WHITEMOND 귀걸이
+                                    (JJLJEQ3BS300SW000)</p>
+                            </div>
+                        </a>
+                    </div><!-- item end -->
+                    <div class="item">
+                        <a href="#">
+                            <figure><img src="img/img2.jpg" alt=""></figure>
+                            <div>
+                                <p>[아이유 PICK] CLOVIA DUELLO 목걸이
+                                    (JJJTNQ2BF042SR420) </p>
+                            </div>
+                        </a>
+                    </div><!-- item end -->
+                    <div class="item">
+                        <a href="#">
+                            <figure><img src="img/img3.jpg " alt=""></figure>
+                            <div>
+                                <p>[아이유 PICK] WHITEMOND 목걸이
+                                    (JJLJNQ3BS300SW420)</p>
+                            </div>
+                        </a>
+                    </div><!-- item end -->
+                </div><!-- .list end -->
+
+                <div class="bg"><span>배경</span></div>
+            </section><!-- .cont04 end -->
+
+            <section class="youtube">
+                <!-- <h2>YOUTUDE</h2> -->
+                <iframe src="https://www.youtube.com/embed/WJV-_smVLv0"
+                    title="[제이에스티나] &#39;Real Fairy Tale&#39; 23 FALL with IU" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+            </section><!-- .youtube end -->
+
+            <div class="top"><img src="img/아이콘/icons8-보석-60.png" alt="">
+                <p>top</p>
+            </div>
+        </main>
+
+        <footer>
+            <div class="list">
+                <a href="#"><img src="img/pc_img_logo1.png" alt=""></a>
+                <h3>회사소개 이용약관 공지사항 MEMBERSHIP 매장 찾기 고객센터 A/S APP Download 개인정보처리방침</h3>
+                <ul>
+                    <li>㈜제이에스티나 대표이사 김유미, 장호선 사업자등록번호 : 215-81-03705 사업자정보확인</li>
+                    <li>통신판매신고번호 : 송파 제 1057호 서울 송파구 양재대로62길 53 제이에스티나빌딩 개인정보보호 책임자 : 장호선</li>
+                    <li>고객님의 안전거래를 위해 현금 결제 시 저희 사이트에서 가입한 구매안전 서비스을 이용하실 수 있습니다. 하나은행 채무지급보증안내</li>
+                </ul>
+                <p>COPYRIGHT J.ESTINA ALL RIGHTS RESERVED.</p>
+            </div>
+        </footer>
+    </div><!-- .wrap end -->
+</body>
+
+</html>
